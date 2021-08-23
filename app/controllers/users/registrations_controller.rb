@@ -2,7 +2,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
-    coupon = Coupon.find_by(code: params["coupon"])
+    coupon = Coupon.initial.find_by(code: params["coupon"])
 
     if coupon.present?
       super
@@ -12,10 +12,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    coupon = Coupon.find_by(code: params["user"]["coupon"])
+    coupon = Coupon.initial.find_by(code: params["user"]["coupon"])
 
     if coupon.present?
-      super
+      super do |user|
+        coupon.update!(user: user, using_state: "complete") if resource.persisted?
+      end
     else
       redirect_to root_path
     end

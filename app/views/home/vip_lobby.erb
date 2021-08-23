@@ -1,1 +1,23 @@
-你有密碼了嗎
+<div class="d-flex justify-content-center mt-4 mb-4">
+  <div class="card">
+    <div class="card-header">
+      僅限擁有通行證的用戶進行註冊
+    </div>
+    <div class="card-body">
+      <p>想進入「無便領域」嗎？</p>
+
+      <p>事必已經準備好通行證了吧</p>
+
+      <p>請向我出示你的唯一證件</p>
+
+      <p>這個證件將會拿來作為註冊帳號使用</p>
+
+      <p>一旦使用之後，就再也不能挪為他人使用</p>
+
+      <%= form_with url: enter_lobby_path do |form| %>
+        <%= form.text_field :coupon %>
+        <%= form.submit "進入" %>
+      <% end %>
+    </div>
+  </div>
+</div>

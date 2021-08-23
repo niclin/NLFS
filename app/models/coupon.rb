@@ -6,6 +6,8 @@ class Coupon < ApplicationRecord
     complete: 1
   }
 
+  belongs_to :user, optional: true
+
   before_create :generate_code
 
   aasm column: :using_state, enum: true do # defaults to aasm_state
@@ -16,8 +18,6 @@ class Coupon < ApplicationRecord
       transitions to: :complete, from: [:initial]
     end
   end
-
-
 
   private
 
