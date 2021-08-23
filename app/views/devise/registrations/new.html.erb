@@ -15,7 +15,8 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :coupon %>
+
+    <%= f.input :coupon, as: :hidden, input_html: { value: params["coupon"] } %>
   </div>
 
   <div class="form-actions">
