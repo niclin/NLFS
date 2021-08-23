@@ -13,6 +13,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "aasm"
 gem "devise"
 gem 'simple_form'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

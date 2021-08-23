@@ -1,0 +1,83 @@
+<h3><%= @post.title %></h3>
+
+<% context = [
+  "這台車想必是車主的寶貝，就讓我們來看看車上動了什麼吧！",
+  "前總成使用 #{@post.front_brake_caliper}、#{@post.front_wheel_rim}、#{@post.front_shock}",
+  "後面的部分，也不簡單，使用了 #{@post.back_wheel_rim} 的後輪框",
+  "以及 #{@post.back_shock} 的避震器來提升整體車輛穩定性",
+  "test",
+  "test",
+  "test",
+  "test",
+  "test"
+  ] %>
+<% @post_attachments.each_with_index do |post_attachment, index| %>
+  <%= image_tag(post_attachment.image.url, width: 640) %>
+
+  <p><%= context[index] %></p>
+<% end %>
+
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th scope="row">車輛提供</th>
+      <td><%= @post.store %></td>
+    </tr>
+    <tr>
+      <th scope="row">前卡鉗</th>
+      <td><%= @post.front_brake_caliper %></td>
+    </tr>
+    <tr>
+      <th scope="row">前輪框</th>
+      <td><%= @post.front_wheel_rim %></td>
+    </tr>
+    <tr>
+      <th scope="row">前避震</th>
+      <td><%= @post.front_shock %></td>
+    </tr>
+    <tr>
+      <th scope="row">後卡鉗</th>
+      <td><%= @post.back_brake_caliper %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">後輪框</th>
+      <td><%= @post.back_wheel_rim %></td>
+    </tr>
+    <tr>
+      <th scope="row">後避震</th>
+      <td><%= @post.back_shock %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">傳動系統</th>
+      <td><%= simple_format(@post.drive_line_system) %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">引擎系統</th>
+      <td><%= simple_format(@post.engine_system) %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">排氣管</th>
+      <td><%= @post.exhaust_pipe %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">外觀</th>
+      <td><%= simple_format(@post.appearance) %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">其他</th>
+      <td><%= simple_format(@post.others) %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">車主的話</th>
+      <td><%= simple_format(@post.comment) %></td>
+    </tr>
+  </tbody>
+</table>
