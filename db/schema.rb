@@ -25,12 +25,20 @@ ActiveRecord::Schema.define(version: 2021_08_23_113314) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
-    t.string "name"
-    t.string "store"
-    t.text "suspension"
-    t.text "brake"
-    t.text "engine"
-    t.text "other"
+    t.string "title", comment: "文章標題"
+    t.string "store", comment: "店家、團體名稱"
+    t.string "front_brake_caliper", comment: "前卡鉗"
+    t.string "front_wheel_rim", comment: "前輪框"
+    t.string "front_shock", comment: "前避震"
+    t.string "back_brake_caliper", comment: "後卡鉗"
+    t.string "back_wheel_rim", comment: "後輪框"
+    t.string "back_shock", comment: "後避震"
+    t.text "drive_line_system", comment: "傳動系統"
+    t.text "engine_system", comment: "引擎系統"
+    t.string "exhaust_pipe", comment: "排氣管"
+    t.string "appearance", comment: "外觀"
+    t.text "others", comment: "其他"
+    t.text "comment", comment: "車主的話"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,6 +50,11 @@ ActiveRecord::Schema.define(version: 2021_08_23_113314) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
