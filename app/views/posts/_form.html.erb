@@ -17,9 +17,36 @@
   <%= f.fields_for :post_attachments do |p| %>
     <div class="field">
       <%= p.label :image %><br>
-      <%= p.file_field :image, :multiple => true, name: "post_attachments[image][]" %>
+      <%= p.file_field :image, name: "post_attachments[image][]" %>
     </div>
   <% end %>
 
+  <%= f.fields_for :post_attachments do |p| %>
+    <div class="field">
+      <%= p.label :image %><br>
+      <%= p.file_field :image, name: "post_attachments[image][]" %>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :post_attachments do |p| %>
+    <div class="field">
+      <%= p.label :image %><br>
+      <%= p.file_field :image, name: "post_attachments[image][]" %>
+    </div>
+  <% end %>
+
+    <%= f.fields_for :post_attachments do |p| %>
+    <div class="field">
+      <%= p.label :image %><br>
+      <%= p.file_field :image, name: "post_attachments[image][]" %>
+    </div>
+  <% end %>
+
+    <%= f.fields_for :post_attachments do |p| %>
+    <div class="field">
+      <%= p.label :image %><br>
+      <%= p.file_field :image, name: "post_attachments[image][]" %>
+    </div>
+  <% end %>
   <%= f.submit %>
 <% end %>

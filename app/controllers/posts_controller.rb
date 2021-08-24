@@ -18,6 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
+      binding.pry
       params[:post_attachments]['image'].each do |a|
           @post_attachment = @post.post_attachments.create!(:image => a,     :post_id => @post.id)
       end
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
     else
       render action: 'new'
     end
-  end
+end
 
   def edit
   end
