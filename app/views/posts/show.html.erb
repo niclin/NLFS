@@ -1,53 +1,60 @@
-<h3><%= @post.title %></h3>
+<div class="container mt-4 mb-4">
+  <% context = [
+    "這台車想必是車主的寶貝，就讓我們來看看車上動了什麼吧！",
+    "前總成使用 #{@post.front_brake_caliper}、#{@post.front_wheel_rim}、#{@post.front_shock}",
+    "後面的部分，也不簡單，使用了 #{@post.back_wheel_rim} 的後輪框",
+    "以及 #{@post.back_shock} 的避震器來提升整體車輛穩定性",
+    "排氣管使用的則是 #{@post.exhaust_pipe}",
+    "test",
+    "test",
+    "test",
+    "test"
+    ] %>
 
-<% context = [
-  "這台車想必是車主的寶貝，就讓我們來看看車上動了什麼吧！",
-  "前總成使用 #{@post.front_brake_caliper}、#{@post.front_wheel_rim}、#{@post.front_shock}",
-  "後面的部分，也不簡單，使用了 #{@post.back_wheel_rim} 的後輪框",
-  "以及 #{@post.back_shock} 的避震器來提升整體車輛穩定性",
-  "排氣管使用的則是 #{@post.exhaust_pipe}",
-  "test",
-  "test",
-  "test",
-  "test"
-  ] %>
+  <div class="row">
 
-<% @post_attachments.each_with_index do |post_attachment, index| %>
-  <%= image_tag(post_attachment.image.url, width: 640) %>
+    <div class="col-md-6 mx-auto">
+      <h3><%= @post.title %></h3>
 
-  <p><%= context[index] %></p>
-<% end %>
+      <% @post_attachments.each_with_index do |post_attachment, index| %>
+        <%= image_tag(post_attachment.image.url, class: "img-fluid") %>
 
-<table class="table table-bordered">
-  <tbody>
-    <tr>
-      <th scope="row">車輛提供</th>
-      <td><%= @post.store %></td>
-    </tr>
+        <p><%= context[index] %></p>
+      <% end %>
 
-    <tr>
-      <th scope="row">傳動系統</th>
-      <td><%= simple_format(@post.drive_line_system) %></td>
-    </tr>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th scope="row">車輛提供</th>
+            <td><%= @post.store %></td>
+          </tr>
 
-    <tr>
-      <th scope="row">引擎系統</th>
-      <td><%= simple_format(@post.engine_system) %></td>
-    </tr>
+          <tr>
+            <th scope="row">傳動系統</th>
+            <td><%= simple_format(@post.drive_line_system) %></td>
+          </tr>
 
-    <tr>
-      <th scope="row">外觀</th>
-      <td><%= simple_format(@post.appearance) %></td>
-    </tr>
+          <tr>
+            <th scope="row">引擎系統</th>
+            <td><%= simple_format(@post.engine_system) %></td>
+          </tr>
 
-    <tr>
-      <th scope="row">其他</th>
-      <td><%= simple_format(@post.others) %></td>
-    </tr>
+          <tr>
+            <th scope="row">外觀</th>
+            <td><%= simple_format(@post.appearance) %></td>
+          </tr>
 
-    <tr>
-      <th scope="row">車主的話</th>
-      <td><%= simple_format(@post.comment) %></td>
-    </tr>
-  </tbody>
-</table>
+          <tr>
+            <th scope="row">其他</th>
+            <td><%= simple_format(@post.others) %></td>
+          </tr>
+
+          <tr>
+            <th scope="row">車主的話</th>
+            <td><%= simple_format(@post.comment) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

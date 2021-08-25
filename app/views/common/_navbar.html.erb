@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">NLFS</a>
+    <%= link_to("NLFS", root_path, class: "navbar-brand") %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,14 +9,22 @@
       <li class="nav-item dropdown no-arrow">
         <li class="nav-item dropdown">
           <% if user_signed_in? %>
-            <li class="nav-item position-relative">
-              <%= link_to "#", class: "nav-link" do %>
-                Hi, <%= current_user.email %>
+          <li class="nav-item position-relative">
+            <%= link_to "#", class: "nav-link" do %>
+              Hi, <%= current_user.email %>
+            <% end %>
+          </li>
+          <li class="nav-item position-relative">
+            <% if current_user.post.present? %>
+              <%= link_to preview_my_post_path, class: "nav-link" do %>
+                預覽愛車資訊
               <% end %>
-            </li>
-          <% end %>
-
-          <% if user_signed_in? %>
+            <% else %>
+              <%= link_to new_my_post_path, class: "nav-link" do %>
+                新增愛車資訊
+              <% end %>
+            <% end %>
+          </li>
           <li>
             <%= link_to(destroy_user_session_path, method: :delete, class: "nav-link") do %>
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

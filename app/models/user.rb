@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   attr_accessor :coupon
+
+  has_one :post
 end

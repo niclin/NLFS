@@ -1,0 +1,83 @@
+<% context = [
+  "這台車想必是車主的寶貝，就讓我們來看看車上動了什麼吧！",
+  "前總成使用 #{@post.front_brake_caliper}、#{@post.front_wheel_rim}、#{@post.front_shock}",
+  "後面的部分，也不簡單，使用了 #{@post.back_wheel_rim} 的後輪框",
+  "以及 #{@post.back_shock} 的避震器來提升整體車輛穩定性",
+  "排氣管使用的則是 #{@post.exhaust_pipe}",
+  "test",
+  "test",
+  "test",
+  "test"
+  ] %>
+
+
+
+<div class="container">
+
+<div class="card">
+  <div class="card-body">
+    <% if @post.draft? %>
+      此為預覽頁面，需送出審核後才能公布在網站首頁
+    <% end %>
+
+    <% if @post.submitted? %>
+      已提交審核，請耐心等候結果，在此之前，您的資訊不會顯示在網站公開頁面。
+    <% end %>
+
+    <% if @post.approved? %>
+      您的資訊已審核通過，現在可以在網站公開頁面看見！
+    <% end %>
+
+    <%= link_to("繼續編輯", edit_my_post_path, class: "btn btn-primary") if !@post.submitted? %>
+
+    <%= link_to("提交審核", submit_my_post_path, class: "btn btn-success", method: :patch) if @post.draft? %>
+  </div>
+</div>
+
+  <div class="row">
+
+    <div class="col-md-6 mx-auto">
+      <h3><%= @post.title %></h3>
+
+      <% @post_attachments.each_with_index do |post_attachment, index| %>
+        <%= image_tag(post_attachment.image.url, class: "img-fluid") %>
+
+        <p><%= context[index] %></p>
+      <% end %>
+
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">車輛提供</th>
+          <td><%= @post.store %></td>
+        </tr>
+
+        <tr>
+          <th scope="row">傳動系統</th>
+          <td><%= simple_format(@post.drive_line_system) %></td>
+        </tr>
+
+        <tr>
+          <th scope="row">引擎系統</th>
+          <td><%= simple_format(@post.engine_system) %></td>
+        </tr>
+
+        <tr>
+          <th scope="row">外觀</th>
+          <td><%= simple_format(@post.appearance) %></td>
+        </tr>
+
+        <tr>
+          <th scope="row">其他</th>
+          <td><%= simple_format(@post.others) %></td>
+        </tr>
+
+        <tr>
+          <th scope="row">車主的話</th>
+          <td><%= simple_format(@post.comment) %></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>

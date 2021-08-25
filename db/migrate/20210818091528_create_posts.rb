@@ -13,7 +13,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.text :drive_line_system, comment: "傳動系統"
       t.text :engine_system, comment: "引擎系統"
       t.string :exhaust_pipe, comment: "排氣管"
-      t.string :appearance, comment: "外觀"
+      t.text :appearance, comment: "外觀"
       t.text :others, comment: "其他"
       t.text :comment, comment: "車主的話"
       t.integer :status, default: 0

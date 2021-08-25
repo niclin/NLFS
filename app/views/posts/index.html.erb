@@ -1,0 +1,21 @@
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-xs-6 col-md-3">
+        <div class="product">
+          <div class="image_wrapper">
+          <%= link_to post_path(post) do %>
+            <% if post.post_attachments.present? %>
+              <%= image_tag(post.post_attachments.first.image.thumb.url, class: "rounded") %>
+            <% else %>
+              <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "rounded") %>
+            <% end %>
+          <% end %>
+
+          <h5>[便改分享] <%= post.title %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

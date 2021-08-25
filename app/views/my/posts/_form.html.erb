@@ -1,0 +1,167 @@
+<div class="container">
+  <%= simple_form_for(@post, url: my_post_path) do |f| %>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          基本資訊
+        </div>
+        <div class="card-body">
+          <%= f.input :title, label: "文章標題", placeholder: "ex: 工程師的城市馬" %>
+          <%= f.input :store, label: "店家或團體名稱", placeholder: "ex: 大便的人不會寂寞" %>
+          <%= f.input :comment, label: "車主的話", placeholder: "ex: 想說什麼就說什麼" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          動力相關
+        </div>
+        <div class="card-body">
+          <%= f.input :drive_line_system, label: "傳動系統", placeholder: "ex: XXXX 傳動" %>
+          <%= f.input :engine_system, label: "引擎系統", placeholder: "ex: 可自由填寫詳細清單" %>
+          <%= f.input :exhaust_pipe, label: "排氣管", placeholder: "ex: 原廠排氣管" %>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          前 & 後總成細項
+        </div>
+        <div class="card-body">
+          <%= f.input :front_brake_caliper, label: "前卡鉗", placeholder: "ex: Banana 基本對四" %>
+          <%= f.input :front_wheel_rim, label: "前輪框", placeholder: "ex: Shit factory 鍛造框" %>
+          <%= f.input :front_shock, label: "前避震", placeholder: "ex: LP330" %>
+          <br>
+          <hr>
+          <%= f.input :back_brake_caliper, label: "後卡鉗", placeholder: "ex: 鼓煞可不必填寫" %>
+          <%= f.input :back_wheel_rim, label: "後輪框", placeholder: "ex: Shit factory 內碟框" %>
+          <%= f.input :back_shock, label: "後避震", placeholder: "ex: X6" %>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          其他周邊
+        </div>
+        <div class="card-body">
+          <%= f.input :appearance, label: "外觀", placeholder: "ex: 可自由填寫詳細清單" %>
+          <%= f.input :others, label: "其他", placeholder: "ex: 可自由填寫詳細清單" %>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          圖片區
+        </div>
+        <div class="card-body">
+          <%= f.fields_for :post_attachments do |p| %>
+          <div class="field">
+            <%= p.label "第一張圖片" %><br>
+            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile1" %>
+            <%= image_tag("", class: "img-fluid", id: "pic1") %>
+          </div>
+          <% end %>
+
+          <%= f.fields_for :post_attachments do |p| %>
+          <div class="field">
+            <%= p.label "第二張圖片" %><br>
+            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile2" %>
+            <%= image_tag("", class: "img-fluid", id: "pic2") %>
+          </div>
+          <% end %>
+
+          <%= f.fields_for :post_attachments do |p| %>
+          <div class="field">
+            <%= p.label "第三張圖片" %><br>
+            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile3" %>
+            <%= image_tag("", class: "img-fluid", id: "pic3") %>
+          </div>
+          <% end %>
+
+          <%= f.fields_for :post_attachments do |p| %>
+          <div class="field">
+            <%= p.label "第四張圖片" %><br>
+            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile4" %>
+            <%= image_tag("", class: "img-fluid", id: "pic4") %>
+          </div>
+          <% end %>
+
+          <%= f.fields_for :post_attachments do |p| %>
+          <div class="field">
+            <%= p.label "第五張圖片" %><br>
+            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile5" %>
+            <%= image_tag("", class: "img-fluid", id: "pic5") %>
+          </div>
+          <% end %>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit "預覽", class: "btn btn-primary" %>
+
+  <% end %>
+</div>
+
+
+<script>
+
+  // Textarea auto resize
+  const tx = document.getElementsByTagName("textarea");
+  for (let i = 0; i < tx.length; i++) {
+    tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+    tx[i].addEventListener("input", OnInput, false);
+  }
+
+  function OnInput() {
+    this.style.height = "auto";
+    this.style.height = (this.scrollHeight) + "px";
+  }
+
+  // Image upload file prview
+  imgFile1.onchange = evt => {
+    const [file] = imgFile1.files
+    if (file) {
+      pic1.src = URL.createObjectURL(file)
+    }
+  }
+  imgFile2.onchange = evt => {
+    const [file] = imgFile2.files
+    if (file) {
+      pic2.src = URL.createObjectURL(file)
+    }
+  }
+  imgFile3.onchange = evt => {
+    const [file] = imgFile3.files
+    if (file) {
+      pic3.src = URL.createObjectURL(file)
+    }
+  }
+  imgFile4.onchange = evt => {
+    const [file] = imgFile4.files
+    if (file) {
+      pic4.src = URL.createObjectURL(file)
+    }
+  }
+  imgFile5.onchange = evt => {
+    const [file] = imgFile5.files
+    if (file) {
+      pic5.src = URL.createObjectURL(file)
+    }
+  }
+</script>
