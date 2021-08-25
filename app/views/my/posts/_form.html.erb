@@ -68,45 +68,18 @@
           圖片區
         </div>
         <div class="card-body">
-          <%= f.fields_for :post_attachments do |p| %>
-          <div class="field">
-            <%= p.label "第一張圖片" %><br>
-            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile1" %>
-            <%= image_tag("", class: "img-fluid", id: "pic1") %>
-          </div>
-          <% end %>
+          <%= f.nested_fields_for :post_attachments do |ff| %>
 
-          <%= f.fields_for :post_attachments do |p| %>
-          <div class="field">
-            <%= p.label "第二張圖片" %><br>
-            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile2" %>
-            <%= image_tag("", class: "img-fluid", id: "pic2") %>
-          </div>
+            <div class="field">
+              <%= ff.label "圖片" %><br>
+              <%= ff.file_field :image, id: "imgFile" %>
+              <%= image_tag(ff.object.new_record? ? "" : ff.object.try(:image).try(:url), class: "img-fluid", id: "pic") %>
+            </div>
+            <br>
+            <%= ff.remove_nested_fields_link "移除圖片", class: "btn btn-danger btn-sm" %>
           <% end %>
-
-          <%= f.fields_for :post_attachments do |p| %>
-          <div class="field">
-            <%= p.label "第三張圖片" %><br>
-            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile3" %>
-            <%= image_tag("", class: "img-fluid", id: "pic3") %>
-          </div>
-          <% end %>
-
-          <%= f.fields_for :post_attachments do |p| %>
-          <div class="field">
-            <%= p.label "第四張圖片" %><br>
-            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile4" %>
-            <%= image_tag("", class: "img-fluid", id: "pic4") %>
-          </div>
-          <% end %>
-
-          <%= f.fields_for :post_attachments do |p| %>
-          <div class="field">
-            <%= p.label "第五張圖片" %><br>
-            <%= p.file_field :image, name: "post_attachments[image][]", id: "imgFile5" %>
-            <%= image_tag("", class: "img-fluid", id: "pic5") %>
-          </div>
-          <% end %>
+          <hr>
+          <%= f.add_nested_fields_link :post_attachments, "新增圖片", class: "btn btn-primary btn-sm" %>
           <br>
         </div>
       </div>
@@ -120,7 +93,6 @@
 
 
 <script>
-
   // Textarea auto resize
   const tx = document.getElementsByTagName("textarea");
   for (let i = 0; i < tx.length; i++) {
@@ -134,10 +106,10 @@
   }
 
   // Image upload file prview
-  imgFile1.onchange = evt => {
+  imgFile0.onchange = evt => {
     const [file] = imgFile1.files
     if (file) {
-      pic1.src = URL.createObjectURL(file)
+      pic0.src = URL.createObjectURL(file)
     }
   }
   imgFile2.onchange = evt => {

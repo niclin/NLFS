@@ -4,16 +4,13 @@ class My::PostsController < ApplicationController
 
   def new
     @post = current_user.build_post
-    @post_attachment = @post.post_attachments.build
+    @post.post_attachments.build
   end
 
   def create
     @post = current_user.build_post(post_params)
 
     if @post.save
-      params[:post_attachments]['image'].each do |a|
-        @post_attachment = @post.post_attachments.create!(:image => a, :post_id => @post.id)
-      end
       redirect_to preview_my_post_path, notice: 'Post was successfully created.'
     else
       render action: 'new'
@@ -21,6 +18,7 @@ class My::PostsController < ApplicationController
   end
 
   def edit
+    @post.post_attachments.build if @post.post_attachments.empty?
   end
 
   def update
@@ -52,6 +50,6 @@ class My::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :store, :front_brake_caliper, :front_wheel_rim, :front_shock, :back_brake_caliper, :back_wheel_rim, :back_shock, :drive_line_system, :engine_system, :exhaust_pipe, :appearance, :others, :comment, post_attachments_attributes: [:id, :post_id, :image])
+    params.require(:post).permit(:title, :store, :front_brake_caliper, :front_wheel_rim, :front_shock, :back_brake_caliper, :back_wheel_rim, :back_shock, :drive_line_system, :engine_system, :exhaust_pipe, :appearance, :others, :comment, post_attachments_attributes: [:id, :image, :_destroy])
   end
 end
