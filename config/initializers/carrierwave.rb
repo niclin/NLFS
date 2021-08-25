@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),
       region: "ap-northeast-1"
     }
-    config.fog_directory  = "nlfs"
+    config.fog_directory  = "nlfs-production"
   else
     config.storage :file
   end
