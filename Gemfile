@@ -18,6 +18,7 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem "nested_form_fields"
 gem "jquery-rails"
+gem 'meta-tags'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
