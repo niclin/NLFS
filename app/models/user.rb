@@ -7,4 +7,6 @@ class User < ApplicationRecord
   attr_accessor :coupon
 
   has_one :post
+
+  scope :recent, -> { order(id: :desc) }
 end

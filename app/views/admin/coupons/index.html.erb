@@ -1,0 +1,61 @@
+<%= link_to("建立 10 筆", batch_create_admin_coupons_path, class: "btn btn-primary", method: :post, data: { confirm: "確定建立 10 筆嗎？"}) %>
+
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">序號</th>
+            <th scope="col">狀態</th>
+            <th scope="col">關聯 UserID</th>
+            <th scope="col">送出時間</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @coupons.each do |coupon| %>
+            <tr>
+              <th><%= coupon.id %></th>
+              <th><%= coupon.code %></th>
+              <th><%= coupon.using_state %></th>
+              <th><%= coupon.user_id %></th>
+              <th><%= coupon.send_at_unixtime %></th>
+              <th>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#couponModal-<%= coupon.id %>">
+                  分享
+                </button>
+              </th>
+            </tr>
+
+            <div class="modal fade" id="couponModal-<%= coupon.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <p>感謝支持!!!</p>
+
+                    <p>這是註冊序號</p>
+
+                    <p><%= coupon.code %></p>
+
+                    <p>一個序號可以註冊一筆帳號</p>
+
+                    <p>一筆帳號只能發一篇文章而已</p>
+
+                    <p>註冊入口在此</p>
+
+                    <p>https://www.nlfs.tw/vip_lobby</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <%= link_to("標示已送出", tag_sended_admin_coupon_path(coupon), class: "btn btn-primary", method: :patch, data: { confirm: "標記送出嗎？" }) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

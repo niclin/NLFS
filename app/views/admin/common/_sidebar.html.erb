@@ -1,0 +1,30 @@
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+
+  <%= link_to(admin_root_path, class: "sidebar-brand d-flex align-items-center justify-content-center") do %>
+    <div class="sidebar-brand-text mx-3">NLFS 後台</div>
+  <% end %>
+
+  <li class="nav-item active">
+    <%= link_to(admin_root_path, class: "nav-link") do %>
+      <%= tag.span("首頁") %>
+    <% end %>
+  </li>
+
+  <li class="nav-item">
+    <%= link_to(admin_users_path, class: "nav-link") do %>
+      <%= tag.span("用戶管理") %>
+    <% end %>
+  </li>
+
+  <li class="nav-item">
+    <%= link_to(admin_coupons_path, class: "nav-link") do %>
+      <%= tag.span("序號管理") %>
+    <% end %>
+  </li>
+
+  <li class="nav-item">
+    <%= link_to(admin_posts_path, class: "nav-link") do %>
+      <%= tag.span("文章管理") %>
+    <% end %>
+  </li>
+</ul>

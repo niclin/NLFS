@@ -14,4 +14,6 @@ class Post < ApplicationRecord
   validates :store, presence: true
   validates :comment, presence: true
   validates :moto_type, presence: true
+
+  scope :recent, -> { order(id: :desc) }
 end

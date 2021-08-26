@@ -1,0 +1,26 @@
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">標題</th>
+            <th scope="col">車種</th>
+            <th scope="col">狀態</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <th><%= link_to(post.id, admin_post_path(post)) %></th>
+              <th><%= post.title %></th>
+              <th><%= post.moto_type %></th>
+              <th><%= post.status %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

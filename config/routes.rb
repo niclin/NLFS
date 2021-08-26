@@ -13,6 +13,26 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :coupons do
+      member do
+        patch :tag_sended
+      end
+      collection do
+        post :batch_create
+      end
+    end
+
+    resources :users
+    resources :posts do
+      member do
+        patch :approve
+      end
+    end
+
+    root "dashboard#index"
+  end
+
   get "vip_lobby", to: "home#vip_lobby"
   get "guide", to: "home#guide"
   post "enter_lobby", to: "home#enter_lobby"

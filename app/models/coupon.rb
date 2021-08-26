@@ -19,6 +19,8 @@ class Coupon < ApplicationRecord
     end
   end
 
+  scope :recent, -> { order(id: :desc) }
+
   private
 
   def generate_code
