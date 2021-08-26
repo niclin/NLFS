@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :coupons do
       member do
+        get :print
         patch :tag_sended
       end
       collection do

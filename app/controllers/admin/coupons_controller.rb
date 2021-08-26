@@ -20,4 +20,11 @@ class Admin::CouponsController < Admin::BaseController
       redirect_back(fallback_location: admin_coupons_path, notice: "失敗！ID: #{@coupon.id}")
     end
   end
+
+  def print
+    @coupon = Coupon.find(params[:id])
+    @qrcode = RQRCode::QRCode.new("https://www.nlfs.tw/vip_lobby?coupon=#{@coupon.code}")
+
+    render layout: false
+  end
 end

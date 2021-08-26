@@ -20,6 +20,7 @@ gem "nested_form_fields"
 gem "jquery-rails"
 gem 'meta-tags'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem "rqrcode", "~> 2.0"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

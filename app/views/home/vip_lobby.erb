@@ -9,7 +9,7 @@
 
       <%= form_with url: enter_lobby_path do |form| %>
         <div class="mb-3">
-          <%= form.text_field :coupon, class: "form-control", placeholder: "請輸入邀請碼" %>
+          <%= form.text_field :coupon, class: "form-control", placeholder: "請輸入邀請碼", value: params[:coupon] %>
         </div>
 
         <div class="d-grid gap-2">

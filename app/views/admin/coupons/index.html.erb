@@ -25,6 +25,7 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#couponModal-<%= coupon.id %>">
                   分享
                 </button>
+                <%= link_to("列印", print_admin_coupon_path(coupon), class: "btn btn-info", target: "_blank") %>
               </th>
             </tr>
 
