@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post_attachments = @post.post_attachments.all
-    set_meta_tags title: @post.title,
+    set_meta_tags title: "#{@post.title} - #{@post.moto_type}",
                   description: @post.comment,
                   keywords: "#{@post.store}, #{@post.front_brake_caliper}, #{@post.front_wheel_rim}, #{@post.front_shock}, #{@post.back_brake_caliper}, #{@post.back_wheel_rim}, #{@post.back_shock}",
                   og: {
