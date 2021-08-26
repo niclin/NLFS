@@ -1,14 +1,22 @@
-<div class="container mt-4 mb-4">
-  <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-xs-6 col-md-3">
-        <div class="card">
+<section class="py-4 text-center container">
+  <div class="row py-lg-4">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">彈指之間就能曝光愛車</h1>
+      <p class="lead text-muted">不需透過媒體也能有專屬自己愛車的獨家報導頁面</p>
+    </div>
+  </div>
+</section>
 
+<div class="container py-4">
+  <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 g-4">
+    <% @posts.each do |post| %>
+      <div class="col">
+        <div class="card shadow-sm">
           <%= link_to post_path(post) do %>
             <% if post.post_attachments.present? %>
-              <%= image_tag(post.post_attachments.first.image.thumb.url, class: "rounded card-img-top") %>
+              <%= image_tag(post.post_attachments.first.image.thumb.url, class: "card-img-top") %>
             <% else %>
-              <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "rounded card-img-top") %>
+              <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "card-img-top") %>
             <% end %>
           <% end %>
 
