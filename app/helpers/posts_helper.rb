@@ -20,7 +20,7 @@ module PostsHelper
     when "submitted"
       "bg-warning"
     when "approved"
-      "bg-warning"
+      "bg-success"
     else
       "bg-info"
     end
