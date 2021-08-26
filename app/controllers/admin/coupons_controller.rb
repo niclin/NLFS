@@ -24,6 +24,8 @@ class Admin::CouponsController < Admin::BaseController
   def print
     @coupon = Coupon.find(params[:id])
 
+    @coupon.update(send_at_unixtime: Time.zone.now.to_i)
+
     render layout: "print"
   end
 
@@ -31,6 +33,8 @@ class Admin::CouponsController < Admin::BaseController
     total = 0
 
     @coupons = Coupon.where(id: params[:ids])
+
+    @coupons.update(send_at_unixtime: Time.zone.now.to_i)
 
     render layout: "print"
   end
