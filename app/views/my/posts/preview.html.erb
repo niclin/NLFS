@@ -11,26 +11,36 @@
   ] %>
 
 <div class="container">
+  <div class="row py-4">
+    <div class="col-md-6 mx-auto">
+      <div class="card mb-3">
+        <div class="card-header <%= render_preview_bar_css_color(@post) %>"><%= render_preview_title(@post) %></div>
+        <div class="card-body">
+          <% if @post.draft? %>
+            <p class="card-text">目前只有您能看到這篇報導，需送出審核後，經由站方審核後將公開於網站內容</p>
+          <% end %>
 
-<div class="card">
-  <div class="card-body">
-    <% if @post.draft? %>
-      此為預覽頁面，需送出審核後才能公布在網站首頁
-    <% end %>
+          <% if @post.submitted? %>
+            <p class="card-text">已提交審核，請耐心等候結果，在此之前，您的資訊不會顯示在網站公開頁面</p>
+            <p class="card-text">如果您重新編輯，狀態將會退回，需要重新審核</p>
+          <% end %>
 
-    <% if @post.submitted? %>
-      已提交審核，請耐心等候結果，在此之前，您的資訊不會顯示在網站公開頁面。
-    <% end %>
+          <% if @post.approved? %>
+            <p class="card-text">您的資訊已審核通過，現在可以在網站公開頁面看見！</p>
+          <% end %>
+        </div>
 
-    <% if @post.approved? %>
-      您的資訊已審核通過，現在可以在網站公開頁面看見！
-    <% end %>
-
-    <%= link_to("繼續編輯", edit_my_post_path, class: "btn btn-primary") if !@post.submitted? %>
-
-    <%= link_to("提交審核", submit_my_post_path, class: "btn btn-success", method: :patch) if @post.draft? %>
+        <% if @post.draft? || !@post.submitted? %>
+        <div class="card-footer">
+          <div>
+            <%= link_to("繼續編輯", edit_my_post_path, class: "btn btn-primary btn-sm") if !@post.submitted? %>
+            <%= link_to("提交審核", submit_my_post_path, class: "btn btn-success btn-sm", method: :patch) if @post.draft? %>
+          </dov>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
 
   <div class="row">
 
