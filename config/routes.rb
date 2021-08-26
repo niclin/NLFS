@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   get "vip_lobby", to: "home#vip_lobby"
+  get "guide", to: "home#guide"
   post "enter_lobby", to: "home#enter_lobby"
 
   root "posts#index"

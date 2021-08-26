@@ -1,23 +1,27 @@
 <div class="d-flex justify-content-center mt-4 mb-4">
   <div class="card">
-    <div class="card-header">
-      僅限擁有通行證的用戶進行註冊
+    <div class="card-header text-center">
+      註冊入口
     </div>
     <div class="card-body">
-      <p>想進入「無便領域」嗎？</p>
-
-      <p>事必已經準備好通行證了吧</p>
-
-      <p>請向我出示你的唯一證件</p>
-
-      <p>這個證件將會拿來作為註冊帳號使用</p>
-
-      <p>一旦使用之後，就再也不能挪為他人使用</p>
+      <p>這裡是便友專屬的停機坪</p>
+      <p>在這裡你可以盡情展示你的愛車</p>
 
       <%= form_with url: enter_lobby_path do |form| %>
-        <%= form.text_field :coupon %>
-        <%= form.submit "進入" %>
+        <div class="mb-3">
+          <%= form.text_field :coupon, class: "form-control", placeholder: "請輸入邀請碼" %>
+        </div>
+
+        <div class="d-grid gap-2">
+          <%= form.submit "進入", class: "btn btn-primary" %>
+        </div>
       <% end %>
+
+      <hr>
+
+      <div class="py-2">
+        <%= link_to("如何成為便友?", guide_path, class: "fs-6 fst-italic") %>
+      </div>
     </div>
   </div>
 </div>

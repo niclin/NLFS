@@ -2,7 +2,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
-    coupon = Coupon.initial.find_by(code: params["coupon"])
+    coupon = session[:coupon] || Coupon.initial.find_by(code: params["coupon"])
 
     if coupon.present?
       super
@@ -15,6 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     coupon = Coupon.initial.find_by(code: params["user"]["coupon"])
 
     if coupon.present?
+      session[:coupon] = params["user"]["coupon"]
       super do |user|
         coupon.update!(user: user, using_state: "complete") if resource.persisted?
       end
