@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show]
 
   def index
-    @posts = Post.approved
+    @posts = Post.approved.recent
   end
 
   def show
