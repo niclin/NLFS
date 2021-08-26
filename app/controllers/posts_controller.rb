@@ -7,6 +7,10 @@ class PostsController < ApplicationController
 
   def show
     @post_attachments = @post.post_attachments.all
+    set_meta_tags title: "[便友帥車] #{@post.title}",
+                  og: {
+                    image: @post_attachments.first.image.og.url
+                  }
   end
 
   private

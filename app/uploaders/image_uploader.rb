@@ -14,10 +14,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   process resize_to_fit: [800, 800]
 
   version :thumb do
-    process resize_to_fill: [320,213]
+    process resize_to_fill: [320, 213]
   end
 
   version :medium do
-    process resize_to_fill: [640,360]
+    process resize_to_fill: [640, 360]
+  end
+
+  version :og do
+    process resize_to_fill: [1200, 627]
   end
 end
