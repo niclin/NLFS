@@ -9,4 +9,8 @@ class Post < ApplicationRecord
     submitted: 1,
     approved: 2
   }
+
+  validates :title, presence: true
+  validates :store, presence: true
+  validates :comment, presence: true
 end
