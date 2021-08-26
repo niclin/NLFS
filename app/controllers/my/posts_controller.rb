@@ -50,6 +50,6 @@ class My::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :store, :front_brake_caliper, :front_wheel_rim, :front_shock, :back_brake_caliper, :back_wheel_rim, :back_shock, :drive_line_system, :engine_system, :exhaust_pipe, :appearance, :others, :comment, post_attachments_attributes: [:id, :image, :_destroy])
+    params.require(:post).permit(:title, :store, :moto_type, :front_brake_caliper, :front_wheel_rim, :front_shock, :back_brake_caliper, :back_wheel_rim, :back_shock, :drive_line_system, :engine_system, :exhaust_pipe, :appearance, :others, :comment, post_attachments_attributes: [:id, :image, :_destroy])
   end
 end

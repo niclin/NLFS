@@ -13,4 +13,5 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :store, presence: true
   validates :comment, presence: true
+  validates :moto_type, presence: true
 end
