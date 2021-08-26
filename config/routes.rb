@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       end
       collection do
         post :batch_create
+        get :bulk_print
       end
     end
 

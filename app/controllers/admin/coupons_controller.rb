@@ -23,8 +23,15 @@ class Admin::CouponsController < Admin::BaseController
 
   def print
     @coupon = Coupon.find(params[:id])
-    @qrcode = RQRCode::QRCode.new("https://www.nlfs.tw/vip_lobby?coupon=#{@coupon.code}")
 
-    render layout: false
+    render layout: "print"
+  end
+
+  def bulk_print
+    total = 0
+
+    @coupons = Coupon.where(id: params[:ids])
+
+    render layout: "print"
   end
 end
